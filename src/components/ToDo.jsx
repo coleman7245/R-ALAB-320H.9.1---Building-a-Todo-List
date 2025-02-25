@@ -65,7 +65,9 @@ function ToDo({item}) {
             </button>
             <button 
                 name='save-btn' 
-                onClick={saveTask}>
+                onClick={saveTask}
+                hidden={editEnabled? false : true}
+            >
                 Save
             </button>
         </li>
