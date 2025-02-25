@@ -1,4 +1,33 @@
-function ToDo({item, deleteTask, editTask, saveTask, editEnabled}) {
+import {useState} from 'react';
+
+function ToDo({item}) {
+    const [editEnabled, setEditEnabled] = useState(false);
+    const [editInput, setEditInput] = useState('');
+    const [todo, setTodo] = useState(item);
+
+    function grabInput(e) {
+        setEditInput(e.target.value);
+    };
+
+    function editTask() {
+        setEditEnabled(!editEnabled);
+    };
+
+    function saveTask() {
+        let newItem = {
+            ...item,
+            title : editInput
+        };
+
+        console.log(newItem);
+
+        setTodo(newItem);
+        editTask(!editEnabled);
+    };
+
+    function deleteTask() {
+
+    };
 
     return (
         <li>
@@ -6,29 +35,37 @@ function ToDo({item, deleteTask, editTask, saveTask, editEnabled}) {
                 className='task-checkbox' 
                 name='task-checkbox' 
                 type='checkbox' 
-                checked={item.completed} 
+                checked={todo.completed} 
                 onChange={deleteTask}
             />
             <button
                 className='delete-btn'  
                 name='delete-btn' 
                 onClick={deleteTask} 
-                disabled={item.completed ? false : true}
+                disabled={todo.completed ? false : true}
             >
                 X
             </button>
-            {editEnabled ? <input className='edit-field'name='edit-field' defaultValue={item.title} /> : item.title}
+            {console.log(editEnabled)}
+            {editEnabled ? 
+                <input 
+                    className='edit-field'
+                    name='edit-field'
+                    defaultValue={todo.title}
+                    onChange={(e) => grabInput(e)} 
+                /> 
+                : todo.title}
             <button
                 name='edit-btn' 
-                onClick={() => editTask(item.id)} 
-                disabled={editEnabled? true : false} 
-                hidden={editEnabled? true : false} 
+                onClick={editTask} 
+                hidden={editEnabled? true : false}
+                value={todo.id} 
             >
                 Edit
             </button>
             <button 
                 name='save-btn' 
-                onClick={() => saveTask(item.id)}>
+                onClick={saveTask}>
                 Save
             </button>
         </li>
