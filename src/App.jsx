@@ -7,8 +7,8 @@ function App() {
 
   return (
     <div>
-      <Header header='ToDo List' />
-      <ToDoList />
+      <Header className='header' header='ToDo List' />
+      <ToDoList name='todo-list' />
     </div>
   );
 };
