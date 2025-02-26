@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-function ToDo({item}) {
+function ToDo({item, deleteTask}) {
     const [editEnabled, setEditEnabled] = useState(false);
     const [editInput, setEditInput] = useState('');
     const [todo, setTodo] = useState(item);
@@ -18,16 +18,16 @@ function ToDo({item}) {
             ...item,
             title : editInput
         };
-
-        console.log(newItem);
-
+        
+        
         setTodo(newItem);
         editTask(!editEnabled);
     };
 
-    function deleteTask() {
-
-    };
+    function checkCompleted() {
+        let newTodo = {...todo, completed : !todo.completed};
+        setTodo(newTodo);
+    }
 
     return (
         <li>
@@ -36,17 +36,16 @@ function ToDo({item}) {
                 name='task-checkbox' 
                 type='checkbox' 
                 checked={todo.completed} 
-                onChange={deleteTask}
+                onChange={checkCompleted}
             />
             <button
                 className='delete-btn'  
                 name='delete-btn' 
-                onClick={deleteTask} 
+                onClick={() => deleteTask(todo.id)} 
                 disabled={todo.completed ? false : true}
             >
                 X
             </button>
-            {console.log(editEnabled)}
             {editEnabled ? 
                 <input 
                     className='edit-field'

@@ -24,6 +24,11 @@ function ToDoList() {
         newTodos.unshift(newTodo);
         setTodos(newTodos);
     };
+
+    function deleteTask(id) {
+        let newTodos = todos.filter((todo) => todo.id !== id);
+        setTodos(newTodos);
+    };
     
     return (
         <div>
@@ -33,6 +38,7 @@ function ToDoList() {
                 {todos.map((todo) => {
                     return <ToDo 
                                 item={todo} 
+                                deleteTask={deleteTask}
                                 key={todo.id} 
                             />
                 })}
