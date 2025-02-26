@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import ToDo from './ToDo.jsx';
+import ToDoReducer from './ToDoReducer.jsx';
 
 import initialState from '../data/data.js';
 
@@ -46,7 +47,7 @@ function ToDoList() {
             <button id='add-btn' htmlFor='add-task-field' onClick={() => addTask()}>Add</button>
             <ul>
                 {todos.map((todo) => {
-                    return <ToDo 
+                    return <ToDoReducer 
                                 item={todo} 
                                 deleteTask={deleteTask}
                                 key={todo.id} 
