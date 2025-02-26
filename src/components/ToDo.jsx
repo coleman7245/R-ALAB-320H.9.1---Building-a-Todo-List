@@ -14,14 +14,17 @@ function ToDo({item, deleteTask}) {
     };
 
     function saveTask() {
+        if (editInput) {
         let newItem = {
             ...item,
             title : editInput
         };
         
-        
+
         setTodo(newItem);
-        editTask(!editEnabled);
+        }
+
+        editTask();
     };
 
     function checkCompleted() {

@@ -12,11 +12,21 @@ function ToDoList() {
         setAddInput(e.target.value);
     };
 
+    function generateKey(id) {
+        let newId = id;
+
+        while (todos.some((todo) => newId === todo.id)) {
+            newId += 1;
+        }
+
+        return newId;
+    }
+
     function addTask() {
         let newTodos = [...todos];
         let newTodo = {
           "userId": 1,
-          "id": newTodos.length + 1,
+          "id": generateKey(todos.length + 1),
           "title": addInput,
           "completed": false
         };
