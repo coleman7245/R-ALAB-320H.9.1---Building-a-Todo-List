@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import ToDo from './ToDo.jsx';
-import ToDoReducer from './ToDoReducer.jsx';
 
 import initialState from '../data/data.js';
 
@@ -13,8 +12,8 @@ function ToDoList() {
         setAddInput(e.target.value);
     };
 
-    function generateKey(id) {
-        let newId = id;
+    function generateKey() {
+        let newId = 0;
 
         while (todos.some((todo) => newId === todo.id)) {
             newId += 1;
@@ -27,7 +26,7 @@ function ToDoList() {
         let newTodos = [...todos];
         let newTodo = {
           "userId": 1,
-          "id": generateKey(todos.length + 1),
+          "id": generateKey(),
           "title": addInput,
           "completed": false
         };
@@ -47,7 +46,7 @@ function ToDoList() {
             <button id='add-btn' htmlFor='add-task-field' onClick={() => addTask()}>Add</button>
             <ul>
                 {todos.map((todo) => {
-                    return <ToDoReducer 
+                    return <ToDo 
                                 item={todo} 
                                 deleteTask={deleteTask}
                                 key={todo.id} 

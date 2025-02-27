@@ -1,7 +1,7 @@
 import './App.css';
 
 import Header from './components/Header';
-import ToDoList from './components/ToDoList';
+import ToDoList from './components/ToDoListReducer';
 
 function App() {
 
