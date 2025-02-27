@@ -19,9 +19,7 @@ function ToDo({item, deleteTask}) {
                     newState.todo.title = state.editInput;
                 return newState;
             case 'CHECK_COMPLETED':
-                console.log(newState.todo.completed);
                 newState.todo.completed = !state.todo.completed;
-                console.log(newState.todo.completed);
                 return newState;
             default:
                 return state;

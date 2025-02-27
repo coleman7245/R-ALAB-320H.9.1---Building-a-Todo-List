@@ -52,7 +52,6 @@ function ToDoList() {
             <input id='add-task-field' type='text' placeholder='Add task...' onChange={(e) => dispatch({type : 'ADD_INPUT', addInput : e.target.value})} />
             <button id='add-btn' htmlFor='add-task-field' onClick={() => dispatch({type : 'ADD_TASK'})}>Add</button>
             <ul>
-                {console.log(state)}
                 {state.todos.map((todo) => {
                     return <ToDo 
                                 item={todo} 
